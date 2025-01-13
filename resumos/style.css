@@ -81,27 +81,27 @@ body {
 }
 
 .videos {
-    display: block;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
     width: 100%;
-    padding: 40px; /* Mais espaçamento para telas maiores */
-}
+    padding: 40px; 
+    }
 
 .video-wrapper {
-position: relative;
-width: 100%; /* O vídeo ocupa 70% da largura da tela */
-padding-top: 56.25%; /* Proporção de 16:9 */
-margin: 0 auto; /* Centraliza o vídeo */
+    position: relative;
+    width: 560px; 
+    height: 315px;
+    margin: 0 auto;
 }
 
 iframe {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%; /* Ajusta automaticamente à largura */
-height: 100%; /* Ajusta automaticamente à altura */
-border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ajusta automaticamente à largura */
+    height: 100%; /* Ajusta automaticamente à altura */
+    border: none;
 }
 
 .container-resumos {
@@ -224,15 +224,16 @@ border: none;
         padding: 0px; /* Adiciona espaçamento para evitar que o vídeo fique muito perto das bordas */
         }
     
-        .video-wrapper {
+    .video-wrapper {
         position: relative;
         width: 100%; /* Ocupa toda a largura disponível */
+        height: 100%;
         padding-top: 56.25%; /* Proporção de 16:9 (9/16 * 100) */
         max-width: 90%; /* Limita a largura para 90% da tela */
         margin: 0 auto; /* Centraliza o vídeo */
         }
     
-        iframe {
+    iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -256,6 +257,11 @@ border: none;
         width: 100%; /* Torna o botão mais responsivo em dispositivos móveis */
         padding: 12px 0;
         font-size: 16px;
+    }
+
+    .container-resumos {
+        padding: 20px;
+        margin-bottom: 50px; /* Garante que o botão não sobreponha o conteúdo */
     }
 }
 
@@ -282,5 +288,10 @@ border: none;
         width: 100%; /* Ajusta automaticamente à largura */
         height: 100%; /* Ajusta automaticamente à altura */
         border: none;
+    }
+
+    .container-resumos {
+        padding: 20px;
+        margin-bottom: 50px; /* Garante que o botão não sobreponha o conteúdo */
     }
 }
