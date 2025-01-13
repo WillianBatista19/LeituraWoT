@@ -370,7 +370,7 @@ color: #c8a415;
     }
 
     .videos {
-        display: flex;
+        display: block;
         justify-content: center; /* Centraliza horizontalmente */
         align-items: center; /* Centraliza verticalmente */
         width: 100%;
