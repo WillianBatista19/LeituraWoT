@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Resumo - A Grande Caçada</title>
+</head>
+<body>
+    <!-- Banner Dinâmico -->
+    <div class="banner-lc" id="bannerLC" style="background-image: url('/images/Banners/BannerGreat-Hunt.jpg');">
+        <div class="banner-overlay">
+            <div class="banner-conteudo">
+                <h1>Resumos de A Grande Caçada</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo da página -->
+
+    <div class="container videos">
+        <div class="video-wrapper">
+            <iframe 
+            src="https://www.youtube.com/embed/X1zLxk5Ua4g?si=8xgHzm1GGfPLf7S3" 
+            title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+            </iframe>
+        </div>
+    </div>     
+
+    <div class="container container-resumos">
+        <div class="acordeao">
+            <button class="acordeao-botao">Em Breve...</button>
+            <div class="acordeao-conteudo">
+                <p>Essa será a leitura após a LC atual. Até breve!! :)</p>
+            </div>
+        </div>
+
+        <div class="acordeao">
+            <button class="acordeao-botao">Leia também no site</button>
+            <div class="acordeao-conteudo">
+                <p>Leia também no site <a href="https://www.umbookaholic.com/2020/04/resumo-grande-cacada.html" target="_blank" rel="noopener noreferrer">Umbookaholic.</a></p>
+            </div>
+        </div>
+
+        <a href="/" class="botao-cronograma">Voltar para a Tela Inicial</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configuração do acordeão
+            const acordeaoBotoes = document.querySelectorAll('.acordeao-botao');
+            acordeaoBotoes.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    this.classList.toggle('ativo');
+                    const conteudo = this.nextElementSibling;
+                    conteudo.style.display = conteudo.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

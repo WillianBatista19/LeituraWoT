@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitura Coletiva WoT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://leitura-wot.vercel.app">
+    <meta property="og:title" content="Leitura Coletiva WoT">
+    <meta property="og:description" content="Grupo de leitura dedicado aos livros da Roda do Tempo de Robert Jordan.">
+    <meta property="og:image" content="https://leitura-wot.vercel.app/images/logo.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://leitura-wot.vercel.app">
+    <meta name="twitter:title" content="Leitura Coletiva Leitura WoT">
+    <meta name="twitter:description" content="Grupo de leitura dedicado aos livros da Roda do Tempo de Robert Jordan.">
+    <meta name="twitter:image" content="https://leitura-wot.vercel.app/images/logo.webp">
+</head>
+<body>
+    <div class="banner-lc" id="bannerLC">
+        <div class="banner-overlay">
+            <div class="banner-conteudo">
+                <!-- <h1 id="tituloLivroAtual"></h1> -->
+                <img id="tituloLivroAtual" src="/images/Titles/WoT1.png" alt="A Roda do Tempo">
+                <p>Leitura Coletiva Atual</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="secao cronograma">
+            <h2 class="secao-titulo">Cronograma de Leitura</h2>
+            <table id="cronogramaLeitura" style="width:100%; color: var(--cor-texto-primaria);">
+                <!-- Cronograma será preenchido via JavaScript -->
+            </table>
+            <a href="resumos/o-olho-do-mundo.html" class="botao-cronograma">Ver Resumos</a>
+        </section>
+
+        <div class="secao videos">
+            <h2 class="secao-titulo">Apresentando o projeto</h2>
+            <div class="video-wrapper">
+                <iframe 
+                src="https://www.youtube.com/embed/X1zLxk5Ua4g?si=8xgHzm1GGfPLf7S3" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+                </iframe>
+            </div>
+        </div> 
+
+        <section class="secao">
+            <h2 class="secao-titulo">Leituras Coletivas Anteriores</h2>
+            <div class="grid-livros" id="lcAnteriores">
+                <!-- Livros anteriores serão preenchidos via JavaScript -->
+            </div>
+        </section>
+
+        <section class="secao">
+            <h2 class="secao-titulo">Livros de A Roda do Tempo</h2>
+            <div class="grid-livros" id="ordemLeitura">
+                <!-- Ordem de leitura será preenchida via JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <div id="modalLivro" class="modal">
+        <div class="modal-conteudo">
+            <span class="botao-fechar">&times;</span>
+            <div id="conteudoModal"></div>
+        </div>
+    </div>
+
+    <script>
+        const livros = {
+            atual: {
+                titulo: 'O Olho do Mundo',
+                autor: 'Robert Jordan',
+                capa: 'https://m.media-amazon.com/images/I/61luxgJKWHL._SL1500_.jpg',
+                sinopse: 'Livro 1 de A Roda do Tempo',
+                banner: './images/Banners/BannerEyeoftheWorld.jpg',
+            },
+            anteriores: [
+                {
+                    titulo: 'O Olho do Mundo',
+                    capa: 'https://intrinseca.com.br/wp-content/uploads/2023/05/Capa_O-olho-do-mundo_139x208.jpg',
+                    sinopse: 'Um dia houve uma guerra tão definitiva que rompeu o mundo, e no girar da Roda do Tempo o que ficou na memória dos homens virou esteio das lendas. Como a que diz que, quando as forças tenebrosas se reerguerem, o poder de combatê-las renascerá em um único homem, o Dragão, que trará de volta a guerra, e, de novo, tudo se fragmentará.',
+                    banner: './images/Banners/BannerEyeoftheWorld.jpg',
+                    temResumo: true,
+                },
+            ],
+            ordemLeitura: [
+                {
+                    titulo: 'O Olho do Mundo',
+                    capa: 'https://intrinseca.com.br/wp-content/uploads/2023/05/Capa_O-olho-do-mundo_139x208.jpg',
+                    sinopse: 'Um dia houve uma guerra tão definitiva que rompeu o mundo, e no girar da Roda do Tempo o que ficou na memória dos homens virou esteio das lendas. Como a que diz que, quando as forças tenebrosas se reerguerem, o poder de combatê-las renascerá em um único homem, o Dragão, que trará de volta a guerra, e, de novo, tudo se fragmentará.',
+                    temResumo: true,
+                    traduzido: true
+                },
+                {
+                    titulo: 'A Grande Caçada',
+                    capa: 'https://m.media-amazon.com/images/I/81qrEwybA7L._SL1500_.jpg',
+                    sinopse: 'No segundo volume da série A Roda do Tempo, o protagonista Rand al’Thor e seus companheiros, Mat e Perrin, partem ao resgate da Trombeta de Valere. Segundo lendas, o artefato tem o poder de reviver heróis temporariamente, e eles podem ser de grande ajuda no combate às forças do Tenebroso. No entanto, há algo que Rand teme ainda mais do que a antítese do Criador: ele sabe que está condenado à loucura e à morte e se pergunta se conseguirá ajudar seus amigos antes que isso aconteça ou se será ele próprio o responsável por destruí-los. Ao mesmo tempo, Egwene e Nynaeve treinam para fazer parte da ordem de mulheres que podem manipular o poder que gira a Roda do Tempo, conhecidas como Aes Sedai.',
+                    temResumo: true,
+                    traduzido: true
+                },
+                {
+                    titulo: 'O Dragão Renascido',
+                    capa: 'https://m.media-amazon.com/images/I/91DhDHHPgqL._SL1500_.jpg',
+                    sinopse: 'Ao final de O Olho do Mundo, primeiro livro da série, o jovem Rand descobre que é capaz de manipular o poder da Roda do Tempo e que ele talvez seja a reencarnação do Dragão. Agora, no terceiro volume da saga, Rand decide que chegou a hora de seguir seu caminho e descobrir se ele é realmente o Dragão Renascido. Para tanto, vai à cidade de Tear, a fim de testar uma das antigas profecias: caso ele consiga empunhar Callandor, a Espada Que Não Pode Ser Tocada, terá provas de que é a reencarnação de Lews Therin Telamon. Já Mat é levado para Tar Valon, onde precisa ser Curado, mas a presença de feiticeiras infiltradas que servem às forças do Tenebroso põe todos em perigo. Enquanto isso, Perrin e Moiraine partem para Tear, em busca de Rand, na esperança de que ele aceite orientação da feiticeira.',
+                    traduzido: true
+                },
+                {
+                    titulo: 'A Ascensão da Sombra',
+                    capa: 'https://m.media-amazon.com/images/I/81zzvsX6AXL._SL1500_.jpg',
+                    sinopse: "No quarto volume da saga A Roda do Tempo, os lacres de Shayol Ghul se enfraquecem enquanto o Tenebroso avança. É nesse cenário que a sombra se ergue para encobrir definitivamente a humanidade. Em Tar Valon, Min tem visões de um destino terrível. Será o fim da Torre Branca? Em Dois Rios, os Mantos-brancos caçam o homem de olhos dourados e o Dragão Renascido. Em Cantorin, junto ao povo do mar, A Grã-lady Suroth vislumbra o retorno dos exércitos Seanchan ao continente. Já na Pedra de Tear, o Lorde Dragão planeja seu próximo passo, e ninguém será capaz de prevê-lo. Nem a Ajah Negra, as nobres de Tairen ou as Aes Sedai, nem mesmo Egwene, Elayne e Nynaeve. Declarado o escolhido da antiga profecia, Rand al'Thor, o Dragão Renascido, precisa seguir em frente e cumprir seu destino: proteger o mundo do retorno do Tenebroso.",
+                    traduzido: true
+                },
+                {
+                    titulo: 'As Chamas do Paraíso',
+                    capa: 'https://m.media-amazon.com/images/I/91s+IgK5jdL._SL1500_.jpg',
+                    sinopse: "Depois de uma perigosa jornada ao Deserto Aiel, Rand se consagrou como Aquele Que Vem Com a Aurora, conforme profetizado por seu novo povo. Ter um exército de homens e mulheres extremamente hábeis na batalha deveria ser uma vantagem, mas, conforme se apega aos novos aliados, o Car'a'carn, chefe dos chefes, se sente cada vez mais vulnerável às tramas de seus inimigos.Enquanto isso, Nynaeve e Elayne perdem aliadas importantes e ganham uma poderosa inimiga. Após a expulsão de Siuan Sanche da Torre Branca, as duas Aceitas devem tentar encontrar as poucas Aes Sedais que continuam fiéis à sua causa. Porém, Moghedien está à espreita, determinada a capturar Nynaeve em sua teia.",
+                    traduzido: true
+                },
+                {
+                    titulo: 'O Senhor do Caos',
+                    capa: 'https://m.media-amazon.com/images/I/91HHIIgwJKL._SL1500_.jpg',
+                    sinopse: "Recuperando-se em meio às Sábias, Egwene deseja prosseguir por conta própria em seus estudos sobre o Mundo dos Sonhos, mas ainda precisa aprender uma dura lição sobre o código de honra Aiel. Em Salidar, a lealdade de Elayne e Nynaeve às dissidentes da Torre Branca as coloca em uma posição difícil: elas devem tentar proteger as Aes Sedai de si mesmas. Mat e Perrin, por sua vez, precisam arriscar a própria vida para seguir Rand. Enquanto isso, o Dragão se divide entre governar Cairhien e Caemlyn, sem jamais encontrar refúgio das decisões difíceis e da voz de Lews Therin, que ameaça fazê-lo sucumbir à loucura.",
+                    traduzido: true
+                },
+                {
+                    titulo: 'Uma Coroa de Espadas',
+                    capa: 'https://m.media-amazon.com/images/I/71hGgdjeBtL._SL1500_.jpg',
+                    sinopse: "No sétimo volume da série que consagrou Robert Jordan como o maior nome da fantasia desde J.R.R. Tolkien, Elayne, Aviendha e Mat estão cada vez mais perto do ter'angreal, que pode reverter a onda de calor que se alastra pelo mundo e restaurar o clima natural. Em meio à rede de tramas das Aes Sedai de Salidar, Egwene começa a reunir diferentes tipos de mulheres capazes de canalizar, algumas de origens surpreendentes. Já Rand prepara-se para enfrentar o Abandonado Sammael nas sombras de Shadar Logoth, onde uma entidade sedenta por sangue, Mashadar, está à espreita, pronta para dominar sua presa. Em Uma Coroa de Espadas, Jordan constrói uma obra incomparável, com personagens complexos e uma trama repleta de intrigas e conspirações, que soluciona mistérios lançados pelo caminho enquanto abre novas portas, estas ainda mais instigantes e rumando ao encontro com o Tenebroso em Tarmon Gai’don, a Última Batalha.",
+                    traduzido: true
+                },
+                {
+                    titulo: 'O Caminho das Adagas',
+                    capa: 'https://m.media-amazon.com/images/I/818iLhanPEL._SL1500_.jpg',
+                    sinopse: "No oitavo volume da série que consagrou Robert Jordan como o maior nome da fantasia desde J.R.R. Tolkien, Elayne e Nynaeve fortalecem alianças difíceis com outras canalizadoras em nome da cooperação que pode restaurar o equilíbrio climático no mundo, libertando-o da influência arrasadora do Tenebroso. Enquanto isso, Egwene precisa encontrar uma maneira de triunfar sobre suas rivais entre as Aes Sedai rebeldes se quiser fazer frente a Elaida, que ainda mantém seu controle sobre a Torre Branca. Mas nem todas as alianças são duradouras, e Perrin, acompanhado por Faile, parte em uma jornada perigosa para deter aqueles que agora cometem atrocidades em nome de Rand. Quando os invasores Seanchan partem em direção a Illian, o temido exército de Asha’man formado por Rand é a última esperança de impedir a dominação de seu povo. No entanto, a mácula de saidin ameaça a integridade de suas forças, lembrando o Dragão Renascido de que, nas guerras e disputas entre os homens, a maior vitória é sempre da Sombra.",
+                    traduzido: true
+                },
+                {
+                    titulo: "Winter's Heart",
+                    capa: 'https://m.media-amazon.com/images/I/81epLxX2opL._SL1500_.jpg',
+                    sinopse: "discover his wife Faile has been abducted by the Shaido Aiel. Determined to reclaim her, Perrin forgoes his mission, risking his army in pursuit of a dangerous and unpredictable enemy. Wounded and trapped in the Seanchan-occupied city of Ebou Dar, Mat Cauthon is awaiting an opportunity to leave. But he is not the only one in hiding. Three Aes Sedai are desperate to escape. As Mat seeks a way to smuggle them all out of the city, he encounters his own prophesized fate when he meets the Daughter of the Nine Moons. Rand himself is on a mission of vengeance. He has tracked the traitorous Asha'man who tried to kill him to Far Madding. It is a city where no one is capable of channeling the One Power, leaving Rand vulnerable to those who would stop at nothing to destroy the Dragon Reborn...",
+                },
+                {
+                    titulo: "Crossroads of Twilight",
+                    capa: 'https://m.media-amazon.com/images/I/81x2aDGjzuL._SL1500_.jpg',
+                    sinopse: "In Crossroads of Twilight, the tenth novel in Robert Jordan's #1 New York Times bestselling epic fantasy series, The Wheel of Time(R), Rand al'Thor and his allies endure trials by fire amidst battles, sacrifices, and treachery. Fleeing from Ebou Dar with the kidnapped Daughter of the Nine Moons, whom he is fated to marry, Mat Cauthon learns that he can neither keep her nor let her go, not in safety for either of them, for both the Shadow and the might of the Seanchan Empire are in deadly pursuit. Perrin Aybara will stop at nothing to free his wife Faile from the Shaido Aiel. Consumed by rage, he offers no mercy to those he takes prisoner. And when he discovers that Masema Dagar, the Prophet of the Dragon, has been conspiring with the Seanchan, Perrin considers making an unholy alliance. Rand al'Thor, the Dragon Reborn himself, has cleansed the Dark One's taint from the male half of the True Source, and everything has changed. Yet nothing has, for only men who can channel believe that saidin is clean again, and a man who can channel is still hated and feared--even one prophesied to save the world. Now, Rand must gamble again, with himself at stake, and he cannot be sure which of his allies are really enemies.",
+                },
+                {
+                    titulo: "Knife of Dreams",
+                    capa: 'https://m.media-amazon.com/images/I/816vXu3E88L._SL1500_.jpg',
+                    sinopse: "In Knife of Dreams, the eleventh novel in Robert Jordan's #1 New York Times bestselling epic fantasy series, The Wheel of Time(R), Tarmon Gai'don, the Last Battle, is upon Rand al'Thor--and now the Dragon Reborn must confront the Dark One as humanity's only hope. The dead are walking, men die impossible deaths, and it seems as though reality itself has become unstable... Abandoning Rand's war against the Dark One, Perrin Aybara has made his own truce with the Seanchan in his obsessive quest to save his wife Faile from the Shaido and destroy their mutual enemies. To achieve victory, Perrin must render the Shaido Wise One channelers in Malden powerless. But even as he puts his desperate plan into action, Masema Dagar, the Prophet of the Dragon, moves against him. Traveling with circus performers through Seanchan-controlled Altara, Mat Cauthon attempts to court Tuon, the Daughter of the Nine Moons, to complete their fateful prophesized marriage. Despite being surrounded by Seanchan seeking to kill her, Mat's intended leads him on a merry chase while he wages guerrilla warfare to protect her. Knowing he cannot defeat the Dark One while at war with the Seanchan, Rand brokers for a truce with the Daughter of the Nine Moons. Unaware of Tuon's actual location, the Dragon Reborn walks into a trap set by the Forsaken Semirhage, who possesses knowledge about his powers that will either shatter or steel his resolve in the forthcoming conflict.",
+                },
+                {
+                    titulo: "The Gathering Storm",
+                    autor: 'Robert Jordan & Brandon Sanderson',
+                    capa: 'https://m.media-amazon.com/images/I/81S-sbkudHS._SL1500_.jpg',
+                    sinopse: "With Robert Jordan's untimely passing in 2007, Brandon Sanderson, the New York Times bestselling author of the Mistborn novels and the Stormlight Archive, was chosen by Jordan's editor--his wife, Harriet McDougal--to complete the final volume in The Wheel of Time(R), later expanded to three books. The Gathering Storm, the twelfth novel in Jordan's #1 New York Times bestselling epic fantasy series, begins the story's dramatic conclusion as Rand al'Thor, the Dragon Reborn, struggles to unite a fractured network of kingdoms and alliances in preparation for the Last Battle. War is coming. The Dark One's forces are brutal and unrelenting. Rand must forge a united front, but the Seanchan remain an immediate threat, as do the Forsaken. With so many shadows swirling around him, Rand is consumed by his responsibilities, turning heartless in the eyes of his allies, and even more merciless to his enemies. Meanwhile the Seanchan march on the White Tower, where Egwene al'Vere works to rally the disparate factions of the Aes Sedai together, even as their tyrannical leader schemes against her. Providing leadership in the face of increasing uncertainty and despair, Egwene's fight will prove the mettle of the Aes Sedai, and her conflict will decide the future of the White Tower--and possibly the world itself.",
+                },
+                {
+                    titulo: "Towers of Midnight",
+                    autor: 'Robert Jordan & Brandon Sanderson',
+                    capa: 'https://m.media-amazon.com/images/I/813FeDp6D4L._SL1500_.jpg',
+                    sinopse: "With Robert Jordan's untimely passing in 2007, Brandon Sanderson, the New York Times bestselling author of the Mistborn novels and the Stormlight Archive, was chosen by Jordan's editor--his wife, Harriet McDougal--to complete the final volume in The Wheel of Time(R), later expanded to three books. In Towers of Midnight, the thirteenth novel in Jordan's #1 New York Times bestselling epic fantasy series, the Last Battle has truly begun. The seals on the Dark One's prison are crumbling. The Pattern itself is unraveling, and the armies of the Shadow have begun to boil out of the Blight. The sun has begun to set upon the Third Age. And trials by fire await those fighting against the darkness that encroaches from their enemies--and within themselves... Perrin Aybara is now hunted by specters from his past: Whitecloaks, a slayer of wolves, and the responsibilities of leadership. All the while, an unseen foe is slowly pulling a noose tight around his neck. To prevail, he must seek answers in Tel'aran'rhiod and find a way--at long last--to master the wolf within him or lose himself to it forever. Mat Cauthon must once again face the creatures beyond the stone gateways, the Aelfinn and the Eelfinn. He had hoped that his last confrontation with them would be the end of it, but the Wheel weaves as the Wheel wills. The Tower of Ghenjei awaits, and its secrets will reveal the fate of a friend long lost. Rand al'Thor, the Dragon Reborn, arrives at the White Tower with a startling revelation for Egwene al'Vere. Fearful for his sanity, Egwene summons the rulers of the Borderlands to stand against him--knowing the fate of the world rests in their hands.",
+                },
+                {
+                    titulo: "A Memory of Light",
+                    autor: 'Robert Jordan & Brandon Sanderson',
+                    capa: 'https://m.media-amazon.com/images/I/81iFxWvgOUL._SL1500_.jpg',
+                    sinopse: "With Robert Jordan's untimely passing in 2007, Brandon Sanderson, the New York Times bestselling author of the Mistborn novels and the Stormlight Archive, was chosen by Jordan's editor--his wife, Harriet McDougal--to complete the final volume in The Wheel of Time(R), later expanded to three books. In A Memory of Light, the fourteenth and concluding novel in Jordan's #1 New York Times bestselling epic fantasy series, the armies of Light gather to fight in Tarmon Gai'don, the Last Battle, to save the Westland nations from the shadow forces of the Dark One. Rand al'Thor, the Dragon Reborn, is ready to fulfill his destiny. To defeat the enemy that threatens them all, he must convince his reluctant allies that his plan--as foolhardy and dangerous as it appears--is their only chance to stop the Dark One's ascension and secure a lasting peace. But if Rand's course of action fails, the world will be engulfed in shadow. Across the land, Mat, Perrin, and Egwene engage in battle with Shadowspawn, Trollocs, Darkfriends, and other creatures of the Blight. Sacrifices are made, lives are lost, but victory is unassured. For when Rand confronts the Dark One in Shayol Ghul, he is bombarded with conflicting visions of the future that reveal there is more at stake for humanity than winning the war.",
+                },
+            ]
+        };
+
+        const cronograma = [
+            { 
+                semana: 1, 
+                paginas: '1-200', 
+                datas: '01/01 - 07/01',
+                tema: 'Início da LC - até 25%'
+            },
+            { 
+                semana: 2, 
+                paginas: '201-400', 
+                datas: '08/01 - 14/01',
+                tema: 'Segunda semana de LC - até 50%'
+            },
+            { 
+                semana: 3, 
+                paginas: '401-600', 
+                datas: '15/01 - 21/01',
+                tema: 'Terceira semana de LC - até 75%'
+            },
+            { 
+                semana: 4, 
+                paginas: '601-800', 
+                datas: '22/01 - 28/01',
+                tema: 'Quarta semana de LC - até 100%'
+            },
+            { 
+                semana: 5, 
+                paginas: 'Restante', 
+                datas: '29/01 - 01/02',
+                tema: 'Dias extras de LC'
+            },
+            { 
+                semana: 6, 
+                paginas: 'Vídeo do <a href="https://www.instagram.com/umbookaholic/" class="link-cronograma" target="_blank" rel="noopener noreferrer">Alec</a>', 
+                datas: '02/02',
+                tema: '<a href="https://youtube.com/playlist?list=PLkGafM1dUh1PWOKB6XfeLwye5bIhkXcB3&si=DVcyPAtC4rN6oK9L" class="link-cronograma" target="_blank" rel="noopener noreferrer">Vídeo resumo</a>'
+            },
+        ];
+
+        // Configurar banner
+        function configurarBanner() {
+            const banner = document.getElementById('bannerLC');
+            banner.style.backgroundImage = `url('${livros.atual.banner}')`;
+            document.getElementById('tituloLivroAtual').textContent = livros.atual.titulo;
+        }
+
+        // Preencher cronograma
+        function preencherCronograma() {
+            const tabela = document.getElementById('cronogramaLeitura');
+            tabela.innerHTML = `
+                <tr style="background-color: var(--cor-destaque);">
+                    <th>Semana</th>
+                    <th>Páginas</th>
+                    <th>Datas</th>
+                    <th>Tema</th>
+                </tr>
+            `;
+            
+            cronograma.forEach(semana => {
+                const linha = tabela.insertRow();
+                linha.innerHTML = `
+                    <td>${semana.semana}</td>
+                    <td>${semana.paginas}</td>
+                    <td>${semana.datas}</td>
+                    <td>${semana.tema}</td>
+                `;
+            });
+        }
+
+        function criarGridLivros(containerId, livros, comTraduzido = false) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = ''; // Limpar o container
+
+        // Determinar o número de livros a exibir com base no tamanho da tela
+        const livrosVisiveis = window.innerWidth > 768 ? livros : livros.slice(0, 3);
+
+        // Exibir os livros
+        livrosVisiveis.forEach(livro => {
+            const cardLivro = document.createElement('div');
+            cardLivro.classList.add('card-livro');
+            if (comTraduzido && !livro.traduzido) {
+                cardLivro.classList.add('grayscale');
+            }
+
+            const conteudoCard = `
+                <img src="${livro.capa}" alt="${livro.titulo}" loading="lazy">
+                <div class="card-livro-info">
+                    <h3>${livro.titulo}</h3>
+                    ${comTraduzido ? 
+                        `<p>${livro.traduzido ? 'Traduzido' : 'Não Traduzido'}</p>` : 
+                        ''
+                    }
+                </div>
+            `;
+            
+            cardLivro.innerHTML = conteudoCard;
+            cardLivro.addEventListener('click', () => abrirModalLivro(livro));
+            container.appendChild(cardLivro);
+        });
+
+        // Exibir o botão "Ver mais" apenas se houver mais de 3 livros e estiver em mobile
+        if (livros.length > 3 && window.innerWidth <= 768) {
+            const botaoVerMais = document.createElement('button');
+            botaoVerMais.classList.add('botao-ver-mais');
+            botaoVerMais.textContent = 'Ver mais';
+            botaoVerMais.addEventListener('click', () => mostrarMaisLivros(containerId, livros, 3, comTraduzido));
+            container.appendChild(botaoVerMais);
+        }
+    }
+
+        // Função para mostrar mais livros ao clicar no botão
+        function mostrarMaisLivros(containerId, livros, indiceInicial, comTraduzido) {
+            const container = document.getElementById(containerId);
+            const livrosVisiveis = livros.slice(0, indiceInicial + 3); // Mostrar mais 3 livros
+            container.innerHTML = ''; // Limpar o container
+
+            // Exibir os livros atualizados
+            livrosVisiveis.forEach(livro => {
+                const cardLivro = document.createElement('div');
+                cardLivro.classList.add('card-livro');
+                if (comTraduzido && !livro.traduzido) {
+                    cardLivro.classList.add('grayscale');
+                }
+
+                const conteudoCard = `
+                    <img src="${livro.capa}" alt="${livro.titulo}">
+                    <div class="card-livro-info">
+                        <h3>${livro.titulo}</h3>
+                        ${comTraduzido ? 
+                            `<p>${livro.traduzido ? 'Traduzido' : 'Não Traduzido'}</p>` : 
+                            ''
+                        }
+                    </div>
+                `;
+                
+                cardLivro.innerHTML = conteudoCard;
+                cardLivro.addEventListener('click', () => abrirModalLivro(livro));
+                container.appendChild(cardLivro);
+            });
+
+            // Exibir novamente o botão "Ver mais" se houver mais livros e estiver em mobile
+            if (livros.length > livrosVisiveis.length && window.innerWidth <= 768) {
+                const botaoVerMais = document.createElement('button');
+                botaoVerMais.classList.add('botao-ver-mais');
+                botaoVerMais.textContent = 'Ver mais';
+                botaoVerMais.addEventListener('click', () => mostrarMaisLivros(containerId, livros, livrosVisiveis.length, comTraduzido));
+                container.appendChild(botaoVerMais);
+            }
+        }
+
+        // Abrir modal com detalhes do livro
+        function abrirModalLivro(livro) {
+            const modal = document.getElementById('modalLivro');
+            const conteudoModal = document.getElementById('conteudoModal');
+
+            // HTML do modal com botão condicional
+            const botoesAcao = livro.temResumo 
+                ? `<div class="modal-livro-acoes">
+                        <button class="botao-ver-resumos" onclick="irParaPaginaResumos('${livro.titulo}')">
+                            Ver Resumos dos Debates
+                        </button>
+                </div>` 
+                : '';
+
+            conteudoModal.innerHTML = `
+                <div class="modal-livro-detalhes">
+                    <div class="modal-livro-header">
+                        <img src="${livro.capa}" alt="${livro.titulo}" class="modal-livro-capa">
+                        <div class="modal-livro-info">
+                            <h2>${livro.titulo}</h2>
+                            <p>${livro.autor || 'Robert Jordan'}</p>
+                        </div>
+                    </div>
+                    <div class="modal-livro-sinopse">
+                        <p>${livro.sinopse}</p>
+                    </div>
+                    ${botoesAcao}
+                </div>
+            `;
+
+            modal.style.display = 'block';
+
+            document.body.style.overflow = 'hidden'; // Bloqueia o scroll da página
+
+            // Adicionando event listener para fechar modal
+            const botaoFechar = document.querySelector('.botao-fechar');
+            botaoFechar.onclick = function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            // Novo: Fechar modal ao clicar fora do conteúdo
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        }
+
+        function irParaPaginaResumos(livro) {
+            // Converte o título para formato de URL
+            const nomeArquivo = livro.toLowerCase()
+                .normalize('NFD')           // Normaliza caracteres especiais
+                .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+                .replace(/\s+/g, '-')        // Substitui espaços por hífens
+                .replace(/[^a-z0-9-]/g, ''); // Remove caracteres que não sejam letras, números ou hífens
+
+            // Salva o título selecionado no localStorage
+            localStorage.setItem('livroSelecionado', livro);
+
+            // Redireciona para a página de resumos
+            window.location.href = `resumos/${nomeArquivo}.html`;
+        }
+        
+        // Inicializar página
+        window.onload = function() {
+            configurarBanner();
+            preencherCronograma();
+            criarGridLivros('lcAnteriores', livros.anteriores);
+            criarGridLivros('ordemLeitura', livros.ordemLeitura, true);
+        }
+    </script>
+</body>
+</html>
