@@ -251,6 +251,7 @@ color: #c8a415;
 @media (max-width: 768px) {
     .secao-titulo {
         font-size: 1.5rem;
+        margin-bottom: 15px;
     }
 
     .secao {
@@ -377,22 +378,22 @@ color: #c8a415;
         padding: 20px; /* Adiciona espaçamento */
     }
 
-  .video-wrapper {
-    position: relative;
-    width: 100%; /* Ocupa toda a largura disponível */
-    padding-top: 56.25%; /* Proporção de 16:9 (9/16 * 100) */
-    max-width: 90%; /* Limita a largura a 90% */
-    margin: 0 auto; /* Centraliza o vídeo */
-  }
+    .video-wrapper {
+        position: relative;
+        width: 100%; /* Ocupa toda a largura disponível */
+        padding-top: 56.25%; /* Proporção de 16:9 (9/16 * 100) */
+        max-width: 100%; /* Limita a largura a 90% */
+        margin: 0 auto; /* Centraliza o vídeo */
+    }
 
-  iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%; /* Ajusta automaticamente à largura */
-    height: 100%; /* Ajusta automaticamente à altura */
-    border: none;
-  }
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Ajusta automaticamente à largura */
+        height: 100%; /* Ajusta automaticamente à altura */
+        border: none;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
